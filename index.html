@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>shppingcart</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="js/shoppingcart.js"></script>
+	<style>
+    .table-striped .delbtn {
+        cursor: pointer;
+        background: #428bca;
+        border: none;
+    }
+    </style>
+</head>
+<body>
+    <div id="shppingcart">
+        <!-- Head -->
+        <div class="page-header">
+            <div>
+              <h1 style="display: inline-block;">My Shopping List</h1>
+                <span>Total
+                <span class="label label-warning" >3</span>
+                </span>
+                <span>Purchasing Num.
+                  <span class="label label-success">3</span>
+                </span>
+            </div>  
+        </div>
+        <!-- Content -->
+        <div class="panel">
+            <div class="input-group">
+              <input class="form-control"/>
+              <span class="input-group-btn">
+                <button class="btn btn-default" >添加</button>
+              </span>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Have purchased </th>
+                  <th>Status</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mobile</td>
+                  <td><input type="checkbox"/></td>
+                  <td>Not purchased</td>
+                  <td><button class="badge delbtn">Delete</button></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>      
+    </div>
+</body>
+</html>
