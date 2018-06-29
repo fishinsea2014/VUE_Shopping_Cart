@@ -14,11 +14,17 @@
         background: #428bca;
         border: none;
     }
+
+    .table-striped .delbtn[disabled] {
+        cursor: default;
+        background: #999;
+        border: none;
+    }
     </style>
 </head>
 <body>
     <div id="shoppingcart">
-      <button @click="test()">Test</button>
+      <!-- <button  @click="test()">Test</button> -->
         <!-- Head -->
         <div class="page-header">
             <div>
@@ -26,8 +32,8 @@
                 <span>Total
                 <span class="label label-warning" >{{items.length}}</span>
                 </span>
-                <span>Purchasing Num.
-                  <span class="label label-success">3</span>
+                <span>Not purchased
+                  <span class="label label-success">{{count}}</span>
                 </span>
             </div>  
         </div>
@@ -43,7 +49,7 @@
               <thead>
                 <tr>
                   <th>Item Name</th>
-                  <th>Have purchased </th>
+                  <th>Purchased </th>
                   <th>Status</th>
                   <th>Delete</th>
                 </tr>
@@ -52,10 +58,10 @@
                   
                 <tr v-for="(item,index) in items">
                   <td>{{item.name}}</td> 
-                  <td><input type="checkbox"/></td>
-                  <td>{{item.state}}</td>
+                  <td><input type="checkbox" v-model="item.state" @change="updateItems()"/></td>
+                  <td>{{item.state | stateFilter}}</td>
                   <td>
-                    <button class="badge delbtn" @click="deleteItem(index)">Delete</button>
+                    <button class="badge delbtn" @click="deleteItem(index)" :disabled="!item.state">Delete</button>
                   </td>
                 </tr>
               </tbody>

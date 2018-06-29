@@ -21,20 +21,43 @@ window.onload = function(){
             },
 
             addItem: function(){
-                console.log(this.items);
-                console.log(this.val);
+                // console.log(this.items);
+                // console.log(this.val);
                 if (this.val == '') return;
-                this.items.push({name:this.val, state:false});
-                // this.items.push({name:'ello', state:false});
-                // this.items.push({action:text,state:false});
-
+                this.items.push({name:this.val, state:false});                
                 this.val = ''
             },
 
-            deleteItem:function (index){
+            deleteItem: function (index){
                 this.items.splice(index,1)
+            },
+
+            updateItems: function () {
+                var _this = this; 
+                this.count = 0;     
+                _this.count = this.items.filter(function(x){return !x.state}).length;    
+                // _this.count = this.items.filter(function(x) {return !x.state}).length;
+      
+                // this.items.forEach(function(item,index) {
+                //     if (!item.state) {
+                //         _this.count++;
+                //     }
+                // });
             }
 
+        },
+
+        filters:{
+            stateFilter: function(type){
+                switch(type){
+                    case true:
+                        return 'Pruchased';
+                    case false:
+                        return 'Not pruchased';
+                    default:
+                        return 'Not purchased'
+                }
+            }
         }
     })
 }
