@@ -5,16 +5,15 @@ window.onload = function(){
             name: 'Jason',
             curpage: 1 , // Current page number
             pagenum :1 , //Total number of pages
-            length : 1,
+            length : 1,  //Total number of items
             val: '',
-            items: [], 
+            items: [],  //Get items from server by method of getList()
             // items:[
             //     {name:'Screen', state: false},                
             //     {name:'Cpu', state: false},
             //     {name:'Mouse', state: false},
             //     {name:'Hard disk', state: false}
             // ],
-            text:'',
             count:0
         },
         mounted: function(){
@@ -72,17 +71,26 @@ window.onload = function(){
                 })
             },
 
-            updateItems: function () {
-                var _this = this; 
-                this.count = 0;     
-                _this.count = this.items.filter(function(x){return !x.state}).length;    
-                // _this.count = this.items.filter(function(x) {return !x.state}).length;
-      
-                // this.items.forEach(function(item,index) {
-                //     if (!item.state) {
-                //         _this.count++;
-                //     }
-                // });
+            updateItems: function (state, index) {
+                // var _this = this; 
+                // this.count = 0;     
+                // _this.count = this.items.filter(function(x){return !x.state}).length;    
+                axios({
+                    method: 'post',
+                    url:'http://localhost:3000/list/checkbox' ,
+                    data: {
+                        cur: this.curpage,
+                        index: index,
+                        state: state
+                    } 
+                }).then( (res) => {
+                    if (res.data.code == '200') {
+                        this.getList(this.curpage);
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
             },
 
             getList: function(cur){

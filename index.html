@@ -60,7 +60,7 @@
                 <tr v-for="(item,index) in items">
                   <td>{{(curpage-1) * 10 + index +1}}</td>
                   <td>{{item.name}}</td> 
-                  <td><input type="checkbox" v-model="item.state" @change="updateItems()"/></td>
+                  <td><input type="checkbox" v-model="item.state" @change="updateItems(item.state, index)"/></td>
                   <td>{{item.state | stateFilter}}</td>
                   <td>
                     <button class="badge delbtn" @click="deleteItem(index)" :disabled="!item.state">Delete</button>
@@ -75,12 +75,12 @@
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
-                <li :class="{active: index = curpage}"  v-for="index in pagenum" @click="getList(index)">
-                  <a href="javascript:void(0)">{{index}} </a>
+                <li :class="{active:i==curpage}" v-for="i in pagenum" @click="getList(i)">
+                  <a href="javascript:void(0)">{{i}} </a>
                 </li>
                 <li :class="{disabled : curpage == pagenum}" @click="curpage == pagenum? null : getList(curpage+1)">
                     <a href="javascript:void(0)" aria-label="Next">
-                      <span aria-hidden="true">&laquo;</span>
+                      <span aria-hidden="true">&raquo;</span>
                     </a>
                   </li>
                 

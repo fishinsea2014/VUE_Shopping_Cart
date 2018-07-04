@@ -2,19 +2,19 @@ var connect = require('connect');  //Create connection
 var bodyParser = require('body-parser');   //body parsing
 var serveStatic = require('serve-static');   //static file access
 var arr=[
-	{name:'memory',state:false},
-	{name:'cpu',state:false},
-	{name:'mouse',state:false},
-	{name:'screen',state:true},
-	{name:'keyboard',state:false},
-	{name:'box',state:false},
-    {name:'mainboard',state:true},	 
-    {name:'keyboard',state:false},
-	{name:'box',state:false},
-    {name:'mainboard',state:true},
-    {name:'keyboard',state:false},
-	{name:'box',state:false},
-	{name:'mainboard',state:true}
+	{name:'1memory',state:false},
+	{name:'2cpu',state:false},
+	{name:'3mouse',state:false},
+	{name:'4screen',state:true},
+	{name:'5keyboard',state:false},
+	{name:'6box',state:false},
+    {name:'7mainboard',state:true},	 
+    {name:'8keyboard',state:false},
+	{name:'9box',state:false},
+    {name:'10mainboard',state:true},
+    {name:'11keyboard',state:false},
+	{name:'12box',state:false},
+	{name:'13mainboard',state:true}
 ];
 var size = 10; // Define 10 items a page.
 var app = connect()
@@ -44,7 +44,8 @@ var app = connect()
 		data.total = total;
 		data.num = arr.filter(function(item){
 			return item.state;
-		}).length;
+        }).length;
+        console.log(arr);
         res.end(JSON.stringify(data));
 		next();
 	})
