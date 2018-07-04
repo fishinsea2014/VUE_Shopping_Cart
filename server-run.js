@@ -8,7 +8,13 @@ var arr=[
 	{name:'screen',state:true},
 	{name:'keyboard',state:false},
 	{name:'box',state:false},
-	{name:'mainboard',state:true},	 
+    {name:'mainboard',state:true},	 
+    {name:'keyboard',state:false},
+	{name:'box',state:false},
+    {name:'mainboard',state:true},
+    {name:'keyboard',state:false},
+	{name:'box',state:false},
+	{name:'mainboard',state:true}
 ];
 var size = 10; // Define 10 items a page.
 var app = connect()

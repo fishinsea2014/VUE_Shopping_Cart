@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>shppingcart</title>
     <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
-    <script src="js/vue.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script type="text/javascript" src="js/axios.js"></script>
     <script type="text/javascript" src="js/shoppingcart.js"></script>
 	<style>
     .table-striped .delbtn {
@@ -48,15 +49,16 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th>No.</th>
                   <th>Item Name</th>
                   <th>Purchased </th>
                   <th>Status</th>
                   <th>Delete</th>
                 </tr>
               </thead>
-              <tbody>
-                  
+              <tbody>                  
                 <tr v-for="(item,index) in items">
+                  <td>{{(curpage-1) * 10 + index +1}}</td>
                   <td>{{item.name}}</td> 
                   <td><input type="checkbox" v-model="item.state" @change="updateItems()"/></td>
                   <td>{{item.state | stateFilter}}</td>
@@ -66,6 +68,24 @@
                 </tr>
               </tbody>
             </table>
+            <nav style ="text-align: center">
+              <ul class="pagination">
+                <li :class="{disabled : curpage == 1}" @click="curpage == 1? null : getList(curpage-1)">
+                  <a href="javascript:void(0)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li :class="{active: index = curpage}"  v-for="index in pagenum" @click="getList(index)">
+                  <a href="javascript:void(0)">{{index}} </a>
+                </li>
+                <li :class="{disabled : curpage == pagenum}" @click="curpage == pagenum? null : getList(curpage+1)">
+                    <a href="javascript:void(0)" aria-label="Next">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                
+              </ul>
+            </nav>
         </div>      
     </div>
 </body>
